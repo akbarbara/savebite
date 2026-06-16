@@ -10,6 +10,7 @@ import { mockCurrentUser, mockOrders } from '@/lib/mock-data';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { Modal } from '@/components/ui/modal';
+import { useToast } from '@/components/ui/toast';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -17,6 +18,39 @@ export default function ProfilePage() {
   const [completedOrders, setCompletedOrders] = useState(0);
   const [activeOrders, setActiveOrders] = useState(0);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editName, setEditName] = useState('');
+  const [editPhone, setEditPhone] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    if (user) {
+      setEditName(user.full_name || '');
+      setEditPhone(user.phone || '');
+    }
+  }, [user]);
+
+  const handleSaveProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+    setIsSaving(true);
+    
+    const { error } = await supabase
+      .from('profiles')
+      .update({ full_name: editName, phone: editPhone })
+      .eq('id', user.id);
+      
+    if (error) {
+      addToast('error', 'Gagal menyimpan profil');
+    } else {
+      addToast('success', 'Profil berhasil diperbarui');
+      setShowEditModal(false);
+      // Wait a moment then reload to reflect changes
+      setTimeout(() => window.location.reload(), 1000);
+    }
+    setIsSaving(false);
+  };
 
   useEffect(() => {
     async function fetchOrderStats() {
@@ -58,7 +92,10 @@ export default function ProfilePage() {
             <h2 className="text-xl font-extrabold">{user.full_name}</h2>
             <p className="text-white/80 text-sm">{user.email || user.phone || 'Email tidak tersedia'}</p>
           </div>
-          <button className="ml-auto p-2 bg-surface/20 rounded-lg hover:bg-surface/30 transition-colors cursor-pointer">
+          <button 
+            onClick={() => setShowEditModal(true)}
+            className="ml-auto p-2 bg-surface/20 rounded-lg hover:bg-surface/30 transition-colors cursor-pointer"
+          >
             <Edit3 size={18} />
           </button>
         </div>
@@ -116,6 +153,38 @@ export default function ProfilePage() {
             </button>
           </div>
         </div>
+      </Modal>
+
+      {/* Edit Profile Modal */}
+      <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)} title="Edit Profil" size="md">
+        <form onSubmit={handleSaveProfile} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-text-secondary mb-1">Nama Lengkap</label>
+            <input 
+              type="text" 
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-text-secondary mb-1">Nomor HP</label>
+            <input 
+              type="tel" 
+              value={editPhone}
+              onChange={(e) => setEditPhone(e.target.value)}
+              className="w-full p-3 rounded-xl border border-border bg-background focus:ring-2 focus:ring-primary outline-none transition-all"
+              placeholder="0812xxxx"
+            />
+          </div>
+          <div className="flex gap-3 pt-4">
+            <Button type="button" variant="outline" className="flex-1" onClick={() => setShowEditModal(false)}>Batal</Button>
+            <Button type="submit" className="flex-1" disabled={isSaving}>
+              {isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}
+            </Button>
+          </div>
+        </form>
       </Modal>
     </div>
   );
