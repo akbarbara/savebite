@@ -71,8 +71,19 @@ export default function PartnerDetailPage() {
 
       {/* Partner Header */}
       <div className="bg-surface rounded-3xl border border-border overflow-hidden mb-8 shadow-sm">
-        <div className="h-32 md:h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
-          <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-sm">
+        <div className="h-32 md:h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative overflow-hidden">
+          {partner.banner_url && !partner.banner_url.includes('placehold.co') && !partner.banner_url.includes('bread-box') && (
+            <img 
+              src={partner.banner_url} 
+              alt={`${partner.business_name} banner`} 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
+          {/* Dark overlay for readability if banner exists */}
+          {partner.banner_url && (
+            <div className="absolute inset-0 bg-black/20" />
+          )}
+          <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-sm z-10">
             <Star size={16} className="fill-amber-500 text-amber-500" />
             {partner.avg_rating} <span className="text-text-muted font-normal text-xs">({partner.total_reviews})</span>
           </div>
