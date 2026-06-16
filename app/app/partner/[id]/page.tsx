@@ -79,8 +79,8 @@ export default function PartnerDetailPage() {
         </div>
         <div className="px-6 pb-6 relative">
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-surface border-4 border-surface shadow-md flex items-center justify-center -mt-10 md:-mt-12 mb-4 relative z-10 overflow-hidden">
-            {partner.image_url && !partner.image_url.includes('placehold.co') && !partner.image_url.includes('bread-box') ? (
-              <img src={partner.image_url} alt={partner.business_name} className="w-full h-full object-cover" />
+            {partner.logo_url && !partner.logo_url.includes('placehold.co') && !partner.logo_url.includes('bread-box') ? (
+              <img src={partner.logo_url} alt={partner.business_name} className="w-full h-full object-cover" />
             ) : (
               <Store size={32} className="text-primary" />
             )}
