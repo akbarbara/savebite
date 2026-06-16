@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Clock, MapPin, Star, Minus, Plus, ShoppingBag, Info, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Clock, MapPin, Star, Minus, Plus, ShoppingBag, Info, ShieldCheck, Maximize2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PriceTag } from '@/components/features/price-tag';
@@ -19,6 +19,7 @@ export default function BagDetailPage() {
   const [bag, setBag] = useState<RescueBag | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [showImageModal, setShowImageModal] = useState(false);
   const { addToast } = useToast();
   const { addToCart } = useCart();
 
@@ -59,27 +60,31 @@ export default function BagDetailPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 relative">
       <Link href="/app" className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-primary mb-6 transition-colors">
         <ArrowLeft size={18} /> Kembali
       </Link>
 
       {/* Image */}
-      <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden bg-border/50 mb-6 flex items-center justify-center">
+      <div className="group relative h-56 md:h-72 rounded-2xl overflow-hidden bg-border/50 mb-6 flex items-center justify-center">
         {bag.image_url && !bag.image_url.includes('placehold.co') && !bag.image_url.includes('bread-box') ? (
-          <img 
-            src={bag.image_url} 
-            alt={bag.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement?.classList.add('bg-gradient-to-br', 'from-primary/20', 'to-accent/20');
-              const fallback = document.createElement('div');
-              fallback.className = 'absolute inset-0 flex items-center justify-center text-primary/30';
-              fallback.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
-              e.currentTarget.parentElement?.appendChild(fallback);
-            }}
-          />
+          <>
+            <img 
+              src={bag.image_url} 
+              alt={bag.name}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement?.classList.add('bg-gradient-to-br', 'from-primary/20', 'to-accent/20');
+              }}
+            />
+            <button 
+              onClick={() => setShowImageModal(true)}
+              className="absolute bottom-4 right-4 z-20 w-10 h-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 cursor-pointer"
+            >
+              <Maximize2 size={18} />
+            </button>
+          </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
             <ShoppingBag size={64} className="text-primary/30" />
@@ -90,6 +95,24 @@ export default function BagDetailPage() {
           <div className="absolute top-4 right-4 z-10"><Badge className="bg-surface text-yellow-600 border-none shadow-md font-bold px-3 py-1">Sisa {bag.quantity_remaining}</Badge></div>
         )}
       </div>
+
+      {/* Lightbox Modal */}
+      {showImageModal && bag.image_url && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fade-in" onClick={() => setShowImageModal(false)}>
+          <button 
+            onClick={() => setShowImageModal(false)}
+            className="absolute top-4 right-4 p-3 text-white/70 hover:text-white transition-colors cursor-pointer"
+          >
+            <X size={24} />
+          </button>
+          <img 
+            src={bag.image_url} 
+            alt={bag.name}
+            className="max-w-[95vw] max-h-[90vh] object-contain rounded-lg animate-[countUp_0.3s_ease-out_forwards]"
+            onClick={(e) => e.stopPropagation()} // Prevent clicking image from closing it
+          />
+        </div>
+      )}
 
       {/* Partner */}
       {bag.partner && (
