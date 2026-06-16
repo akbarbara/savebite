@@ -21,11 +21,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const storedTheme = localStorage.getItem('theme') as Theme;
-    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Default to light mode for everyone, unless they explicitly chose dark mode
+    if (storedTheme === 'dark') {
       setTheme('dark');
       document.documentElement.classList.add('dark');
     } else {
+      setTheme('light');
       document.documentElement.classList.remove('dark');
+      // If it's the first time visiting, explicitly set the storage to light
+      if (!storedTheme) localStorage.setItem('theme', 'light');
     }
   }, []);
 
