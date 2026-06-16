@@ -90,7 +90,7 @@ export function Select({
                     "px-4 py-2.5 text-sm cursor-pointer transition-colors flex items-center justify-between",
                     value === opt.value 
                       ? "bg-primary-light/50 text-primary font-medium" 
-                      : "text-text-primary hover:bg-gray-50"
+                      : "text-text-primary hover:bg-background"
                   )}
                 >
                   <span className="block truncate">{opt.label}</span>

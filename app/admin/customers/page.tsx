@@ -51,7 +51,7 @@ export default async function AdminCustomersPage() {
       <div className="bg-surface rounded-2xl border border-border overflow-x-auto shadow-sm">
         <table className="w-full min-w-[600px]">
           <thead>
-            <tr className="border-b border-border bg-gray-50/50">
+            <tr className="border-b border-border bg-background/50">
               <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Customer</th>
               <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Kontak</th>
               <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Pesanan Selesai</th>

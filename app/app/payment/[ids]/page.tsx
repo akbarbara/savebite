@@ -79,8 +79,8 @@ export default function PaymentGatewayPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-white border-b border-border sticky top-0 z-30">
+    <div className="min-h-screen bg-background pb-20">
+      <div className="bg-surface border-b border-border sticky top-0 z-30">
         <div className="max-w-md mx-auto px-4 h-16 flex items-center justify-between">
           <button onClick={() => router.push('/app/orders')} className="p-2 -ml-2 text-text-secondary hover:text-primary transition-colors">
             <ArrowLeft size={20} />
@@ -104,11 +104,11 @@ export default function PaymentGatewayPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-border overflow-hidden mb-6 shadow-sm">
+        <div className="bg-surface rounded-2xl border border-border overflow-hidden mb-6 shadow-sm">
           {method === 'qris' || method === 'ewallet' ? (
             <div className="p-6 text-center border-b border-border">
               <h3 className="font-bold mb-4">Scan QRIS Berikut</h3>
-              <div className="w-48 h-48 bg-gray-100 rounded-xl mx-auto flex items-center justify-center mb-4 border-2 border-dashed border-gray-300">
+              <div className="w-48 h-48 bg-border/50 rounded-xl mx-auto flex items-center justify-center mb-4 border-2 border-dashed border-gray-300">
                 {/* Mock QR Code Pattern */}
                 <div className="w-3/4 h-3/4 bg-[url('https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg')] bg-contain bg-no-repeat bg-center opacity-80" />
               </div>
@@ -118,7 +118,7 @@ export default function PaymentGatewayPage() {
             <div className="p-6 border-b border-border">
               <h3 className="font-bold mb-4">Transfer Virtual Account</h3>
               <p className="text-sm text-text-secondary mb-1">Bank BCA (Virtual Account)</p>
-              <div className="flex items-center justify-between bg-gray-50 p-3 rounded-xl border border-border mb-4">
+              <div className="flex items-center justify-between bg-background p-3 rounded-xl border border-border mb-4">
                 <span className="font-mono text-xl font-bold tracking-wider text-text-primary">8277 0812 3456 7890</span>
                 <button className="p-2 text-primary hover:bg-primary-light rounded-lg transition-colors flex items-center gap-1 text-sm font-bold">
                   <Copy size={16} /> Salin
@@ -128,7 +128,7 @@ export default function PaymentGatewayPage() {
             </div>
           )}
           
-          <div className="bg-gray-50 p-6 flex flex-col gap-3">
+          <div className="bg-background p-6 flex flex-col gap-3">
             <Button 
               className="w-full text-lg h-14 bg-emerald-500 hover:bg-emerald-600 shadow-md shadow-emerald-500/20" 
               onClick={handleSimulatePayment} 

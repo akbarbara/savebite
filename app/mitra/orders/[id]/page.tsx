@@ -81,11 +81,11 @@ export default function MitraOrderDetailPage() {
       <div className="bg-surface rounded-2xl border border-border p-5 mb-4 space-y-3">
         <h3 className="font-bold">Informasi Pelanggan</h3>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"><User size={16} className="text-text-secondary" /></div>
+          <div className="w-8 h-8 rounded-full bg-border/50 flex items-center justify-center"><User size={16} className="text-text-secondary" /></div>
           <span className="text-sm font-medium">{(order as any).customer?.full_name || 'Tanpa Nama'}</span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"><Phone size={16} className="text-text-secondary" /></div>
+          <div className="w-8 h-8 rounded-full bg-border/50 flex items-center justify-center"><Phone size={16} className="text-text-secondary" /></div>
           <span className="text-sm font-medium">{(order as any).customer?.phone || 'Tidak ada nomor HP'}</span>
         </div>
       </div>

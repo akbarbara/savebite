@@ -86,7 +86,7 @@ function SidebarContent({ items, pathname, title, collapsed, onClose, onCollapse
           </div>
         )}
         {onClose && (
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 cursor-pointer">
+          <button onClick={onClose} className="p-1 rounded-lg hover:bg-border/50 cursor-pointer">
             <X size={18} />
           </button>
         )}
@@ -135,7 +135,7 @@ function SidebarContent({ items, pathname, title, collapsed, onClose, onCollapse
               {!collapsed && item.badge !== undefined && item.badge !== 0 && (
                 <div className={cn(
                   "text-[10px] font-bold px-2 py-0.5 rounded-full ml-2 flex-shrink-0 animate-in zoom-in",
-                  isActive ? "bg-white text-primary" : "bg-red-500 text-white"
+                  isActive ? "bg-surface text-primary" : "bg-red-500 text-white"
                 )}>
                   {item.badge}
                 </div>
@@ -168,7 +168,7 @@ function SidebarContent({ items, pathname, title, collapsed, onClose, onCollapse
           <div className="flex gap-3">
             <button
               onClick={() => setShowLogoutModal(false)}
-              className="flex-1 py-2.5 px-4 rounded-xl border border-border text-text-primary font-medium hover:bg-gray-50 transition-colors"
+              className="flex-1 py-2.5 px-4 rounded-xl border border-border text-text-primary font-medium hover:bg-background transition-colors"
             >
               Batal
             </button>
@@ -194,7 +194,7 @@ function SidebarContent({ items, pathname, title, collapsed, onClose, onCollapse
         {onCollapse && (
           <button
             onClick={onCollapse}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-sm text-text-muted hover:bg-gray-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-sm text-text-muted hover:bg-border/50 dark:hover:bg-white/5 transition-colors cursor-pointer"
           >
             <ChevronRight size={16} className={cn('transition-transform', !collapsed && 'rotate-180')} />
             {!collapsed && <span>Tutup Menu</span>}

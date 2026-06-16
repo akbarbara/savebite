@@ -65,7 +65,7 @@ export default function BagDetailPage() {
       </Link>
 
       {/* Image */}
-      <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden bg-gray-100 mb-6 flex items-center justify-center">
+      <div className="relative h-56 md:h-72 rounded-2xl overflow-hidden bg-border/50 mb-6 flex items-center justify-center">
         {bag.image_url && !bag.image_url.includes('placehold.co') && !bag.image_url.includes('bread-box') ? (
           <img 
             src={bag.image_url} 
@@ -85,9 +85,9 @@ export default function BagDetailPage() {
             <ShoppingBag size={64} className="text-primary/30" />
           </div>
         )}
-        <div className="absolute top-4 left-4 z-10"><Badge className="bg-white text-accent border-none shadow-md font-extrabold px-3 py-1">-{Math.round(((bag.original_price - bag.rescue_price) / bag.original_price) * 100)}%</Badge></div>
+        <div className="absolute top-4 left-4 z-10"><Badge className="bg-surface text-accent border-none shadow-md font-extrabold px-3 py-1">-{Math.round(((bag.original_price - bag.rescue_price) / bag.original_price) * 100)}%</Badge></div>
         {bag.quantity_remaining <= 3 && bag.quantity_remaining > 0 && (
-          <div className="absolute top-4 right-4 z-10"><Badge className="bg-white text-yellow-600 border-none shadow-md font-bold px-3 py-1">Sisa {bag.quantity_remaining}</Badge></div>
+          <div className="absolute top-4 right-4 z-10"><Badge className="bg-surface text-yellow-600 border-none shadow-md font-bold px-3 py-1">Sisa {bag.quantity_remaining}</Badge></div>
         )}
       </div>
 
@@ -144,9 +144,9 @@ export default function BagDetailPage() {
       <div className="flex items-center justify-between p-4 bg-surface rounded-xl border border-border mb-6">
         <span className="font-semibold">Jumlah</span>
         <div className="flex items-center gap-4">
-          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-gray-50 cursor-pointer"><Minus size={16} /></button>
+          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-background cursor-pointer"><Minus size={16} /></button>
           <span className="font-bold text-lg w-8 text-center">{quantity}</span>
-          <button onClick={() => setQuantity(Math.min(bag.quantity_remaining, quantity + 1))} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-gray-50 cursor-pointer"><Plus size={16} /></button>
+          <button onClick={() => setQuantity(Math.min(bag.quantity_remaining, quantity + 1))} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-background cursor-pointer"><Plus size={16} /></button>
         </div>
       </div>
 

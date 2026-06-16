@@ -18,9 +18,9 @@ export function Footer() {
               Selamatkan makanan, hemat pengeluaran. Platform untuk mengurangi food waste di Indonesia.
             </p>
             <div className="flex gap-3 mt-5">
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"><Globe size={18} /></a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"><MessageCircle size={18} /></a>
-              <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"><Phone size={18} /></a>
+              <a href="#" className="w-9 h-9 rounded-lg bg-surface/10 flex items-center justify-center hover:bg-primary transition-colors"><Globe size={18} /></a>
+              <a href="#" className="w-9 h-9 rounded-lg bg-surface/10 flex items-center justify-center hover:bg-primary transition-colors"><MessageCircle size={18} /></a>
+              <a href="#" className="w-9 h-9 rounded-lg bg-surface/10 flex items-center justify-center hover:bg-primary transition-colors"><Phone size={18} /></a>
             </div>
           </div>
 
@@ -54,8 +54,8 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">© 2026 SaveBite. All rights reserved.</p>
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <p className="text-sm text-text-muted">© 2026 SaveBite. All rights reserved.</p>
+          <div className="flex items-center gap-2 text-sm text-text-muted">
             <Mail size={14} />
             <span>hello@savebite.id</span>
           </div>

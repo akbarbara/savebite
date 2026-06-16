@@ -12,7 +12,7 @@ export function Badge({ variant = 'neutral', children, className }: BadgeProps) 
     warning: 'bg-amber-100 text-amber-700 border-amber-200',
     error: 'bg-red-100 text-red-700 border-red-200',
     info: 'bg-blue-100 text-blue-700 border-blue-200',
-    neutral: 'bg-gray-100 text-gray-700 border-gray-200',
+    neutral: 'bg-border/50 text-text-primary border-gray-200',
     accent: 'bg-accent-light text-accent border-orange-200',
   };
 

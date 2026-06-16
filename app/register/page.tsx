@@ -71,12 +71,12 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-background flex">
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary to-emerald-400 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-20 w-72 h-72 bg-surface/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-surface/10 rounded-full blur-3xl" />
         </div>
         <div className="relative flex flex-col justify-center px-16 text-white">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-surface/20 flex items-center justify-center">
               <Leaf size={28} />
             </div>
             <span className="text-3xl font-extrabold">SaveBite</span>
@@ -86,7 +86,7 @@ export default function RegisterPage() {
           <div className="mt-10 space-y-4">
             {['Hemat hingga 70% setiap beli', 'Pickup mudah di toko terdekat', 'Bantu kurangi food waste Indonesia'].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><span className="text-xs">✓</span></div>
+                <div className="w-6 h-6 rounded-full bg-surface/20 flex items-center justify-center"><span className="text-xs">✓</span></div>
                 <span className="text-sm text-white/90">{item}</span>
               </div>
             ))}

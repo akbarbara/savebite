@@ -100,7 +100,7 @@ export function ImageUploader({
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="p-2 bg-white rounded-full text-text-primary hover:text-primary hover:bg-primary-light transition-colors shadow-sm"
+                  className="p-2 bg-surface rounded-full text-text-primary hover:text-primary hover:bg-primary-light transition-colors shadow-sm"
                 >
                   <Edit3 size={16} />
                 </button>
@@ -110,7 +110,7 @@ export function ImageUploader({
                 <button
                   type="button"
                   onClick={removeImage}
-                  className="p-2 bg-white rounded-full text-error hover:bg-error/10 transition-colors shadow-sm"
+                  className="p-2 bg-surface rounded-full text-error hover:bg-error/10 transition-colors shadow-sm"
                 >
                   <X size={16} />
                 </button>

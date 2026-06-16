@@ -86,7 +86,7 @@ export default function AdminTransactionsPage() {
         ) : (
           <table className="w-full min-w-[700px]">
             <thead>
-              <tr className="border-b border-border bg-gray-50/50">
+              <tr className="border-b border-border bg-background/50">
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">ID</th>
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Tanggal</th>
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Rescue Bag</th>

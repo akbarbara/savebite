@@ -15,10 +15,10 @@ export function Button({ variant = 'primary', size = 'md', isLoading, children, 
     primary: 'bg-primary text-white hover:bg-primary-dark focus:ring-primary shadow-sm hover:shadow-md',
     secondary: 'bg-primary-light text-primary hover:bg-emerald-100 focus:ring-primary',
     outline: 'border-2 border-border text-text-primary hover:border-primary hover:text-primary focus:ring-primary bg-transparent',
-    ghost: 'text-text-secondary hover:bg-gray-100 hover:text-text-primary focus:ring-gray-300',
+    ghost: 'text-text-secondary hover:bg-border/50 hover:text-text-primary focus:ring-gray-300',
     danger: 'bg-error text-white hover:bg-red-600 focus:ring-error',
     accent: 'bg-accent text-white hover:bg-orange-600 focus:ring-accent shadow-sm hover:shadow-md',
-    white: 'bg-white text-primary hover:bg-primary hover:text-white hover:-translate-y-1 focus:ring-primary shadow-md hover:shadow-xl',
+    white: 'bg-surface text-primary hover:bg-primary hover:text-white hover:-translate-y-1 focus:ring-primary shadow-md hover:shadow-xl',
   };
 
   const sizes = {

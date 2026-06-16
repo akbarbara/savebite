@@ -118,11 +118,11 @@ export default function OrderDetailPage() {
       {['confirmed', 'ready'].includes(order.status) && (
         <div className="bg-gradient-to-br from-primary to-emerald-400 rounded-2xl p-6 text-center text-white mb-6">
           <p className="text-sm text-white/80 mb-2">Kode Pickup Kamu</p>
-          <div className="bg-white/20 backdrop-blur rounded-xl py-4 px-6 mb-3">
+          <div className="bg-surface/20 backdrop-blur rounded-xl py-4 px-6 mb-3">
             <p className="text-4xl font-mono font-extrabold tracking-[0.3em]">{order.pickup_code}</p>
           </div>
           <p className="text-xs text-white/60">Tunjukkan kode ini ke kasir saat pickup</p>
-          <Button variant="ghost" size="sm" className="mt-3 text-white hover:bg-white/20" onClick={() => navigator.clipboard.writeText(order.pickup_code)}>
+          <Button variant="ghost" size="sm" className="mt-3 text-white hover:bg-surface/20" onClick={() => navigator.clipboard.writeText(order.pickup_code)}>
             <Copy size={14} /> Salin Kode
           </Button>
         </div>

@@ -47,9 +47,9 @@ export default function CartPage() {
                   <p className="text-xs text-text-muted">{item.bag.partner?.business_name}</p>
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center gap-3">
-                      <button onClick={() => updateQty(item.bag.id, item.quantity, -1)} className="w-7 h-7 rounded-lg border border-border flex items-center justify-center hover:bg-gray-50 cursor-pointer"><Minus size={14} /></button>
+                      <button onClick={() => updateQty(item.bag.id, item.quantity, -1)} className="w-7 h-7 rounded-lg border border-border flex items-center justify-center hover:bg-background cursor-pointer"><Minus size={14} /></button>
                       <span className="font-bold">{item.quantity}</span>
-                      <button onClick={() => updateQty(item.bag.id, item.quantity, 1)} className="w-7 h-7 rounded-lg border border-border flex items-center justify-center hover:bg-gray-50 cursor-pointer"><Plus size={14} /></button>
+                      <button onClick={() => updateQty(item.bag.id, item.quantity, 1)} className="w-7 h-7 rounded-lg border border-border flex items-center justify-center hover:bg-background cursor-pointer"><Plus size={14} /></button>
                     </div>
                     <span className="font-bold text-primary">{formatCurrency(item.bag.rescue_price * item.quantity)}</span>
                   </div>

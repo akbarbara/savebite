@@ -58,7 +58,7 @@ export default function ProfilePage() {
             <h2 className="text-xl font-extrabold">{user.full_name}</h2>
             <p className="text-white/80 text-sm">{user.email || user.phone || 'Email tidak tersedia'}</p>
           </div>
-          <button className="ml-auto p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors cursor-pointer">
+          <button className="ml-auto p-2 bg-surface/20 rounded-lg hover:bg-surface/30 transition-colors cursor-pointer">
             <Edit3 size={18} />
           </button>
         </div>
@@ -101,7 +101,7 @@ export default function ProfilePage() {
           <div className="flex gap-3">
             <button
               onClick={() => setShowLogoutModal(false)}
-              className="flex-1 py-2.5 px-4 rounded-xl border border-border text-text-primary font-medium hover:bg-gray-50 transition-colors"
+              className="flex-1 py-2.5 px-4 rounded-xl border border-border text-text-primary font-medium hover:bg-background transition-colors"
             >
               Batal
             </button>

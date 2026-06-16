@@ -57,7 +57,7 @@ export default function ImpactDashboard() {
   let levelName = "Pengamat Lingkungan 🧐";
   let levelIcon = <Star size={32} className="text-gray-400" />;
   let nextGoal = 5;
-  let bgGradient = "from-gray-100 to-gray-200 text-gray-700";
+  let bgGradient = "from-gray-100 to-gray-200 text-text-primary";
 
   if (totalItemsSaved > 0 && totalItemsSaved < 5) {
     levelName = "Pecinta Lingkungan Pemula 🌱";
@@ -96,7 +96,7 @@ export default function ImpactDashboard() {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white border border-border p-3 rounded-xl shadow-lg">
+        <div className="bg-surface border border-border p-3 rounded-xl shadow-lg">
           <p className="font-bold text-sm text-text-primary mb-1">{payload[0].name}</p>
           <p className="text-primary font-bold">{payload[0].value} porsi diselamatkan</p>
         </div>
@@ -118,9 +118,9 @@ export default function ImpactDashboard() {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
 
         <div className="flex items-center gap-4 mb-4 relative z-10">
-          <div className="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center backdrop-blur-sm shadow-inner relative group-hover:rotate-12 transition-transform duration-500">
+          <div className="w-16 h-16 bg-surface/50 rounded-full flex items-center justify-center backdrop-blur-sm shadow-inner relative group-hover:rotate-12 transition-transform duration-500">
             {/* Pulsing ring behind icon */}
-            <div className="absolute inset-0 bg-white/30 rounded-full animate-ping opacity-75" style={{ animationDuration: '3s' }}></div>
+            <div className="absolute inset-0 bg-surface/30 rounded-full animate-ping opacity-75" style={{ animationDuration: '3s' }}></div>
             <div className="animate-[bounce_2s_infinite]">
               {levelIcon}
             </div>
@@ -138,7 +138,7 @@ export default function ImpactDashboard() {
             <span>{totalItemsSaved} Porsi</span>
             <span className="animate-pulse">{nextGoal} Porsi (Naik Level)</span>
           </div>
-          <div className="h-3 w-full bg-white/40 rounded-full overflow-hidden shadow-inner relative">
+          <div className="h-3 w-full bg-surface/40 rounded-full overflow-hidden shadow-inner relative">
             <div 
               className="absolute left-0 top-0 h-full bg-black/20 rounded-full transition-all duration-1000 ease-out" 
               style={{ width: `${progressPercent}%` }}
@@ -175,12 +175,12 @@ export default function ImpactDashboard() {
           {/* Shine effect on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
           
-          <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 animate-[bounce_3s_infinite]">
+          <div className="w-12 h-12 bg-surface/20 rounded-full flex items-center justify-center mx-auto mb-3 animate-[bounce_3s_infinite]">
             <DollarSign size={24} />
           </div>
           <p className="text-sm font-medium opacity-90 mb-1 uppercase tracking-wider">Total Uang Dihemat</p>
           <p className="text-4xl font-extrabold mb-3 drop-shadow-md">{formatCurrency(moneySaved)}</p>
-          <div className="bg-white/10 rounded-xl py-2 px-4 inline-block text-sm backdrop-blur-sm border border-white/20 shadow-inner">
+          <div className="bg-surface/10 rounded-xl py-2 px-4 inline-block text-sm backdrop-blur-sm border border-white/20 shadow-inner">
             <p className="opacity-80 line-through mb-0.5">Seharusnya: {formatCurrency(totalOriginalPrice)}</p>
             <p className="font-bold text-emerald-50 flex items-center justify-center gap-1">
               Kamu cuma bayar: {formatCurrency(totalPaidPrice)} <span className="animate-pulse inline-block">🔥</span>

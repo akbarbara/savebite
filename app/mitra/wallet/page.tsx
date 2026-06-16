@@ -95,7 +95,7 @@ export default function MitraWalletPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Balance Card */}
         <div className="col-span-1 md:col-span-2 bg-gradient-to-br from-primary to-emerald-400 rounded-3xl p-8 text-white relative overflow-hidden shadow-lg">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-surface/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-2">
               <Wallet size={20} className="text-white/80" />
@@ -195,7 +195,7 @@ export default function MitraWalletPage() {
             </div>
           ) : (
             withdrawals.map((w) => (
-              <div key={w.id} className="p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              <div key={w.id} className="p-6 flex items-center justify-between hover:bg-background transition-colors">
                 <div className="flex items-center gap-4">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                     w.status === 'completed' || w.status === 'approved' ? 'bg-green-100 text-green-600' : 

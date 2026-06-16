@@ -14,7 +14,7 @@ export function Navbar({ variant = 'public' }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-border">
+    <nav className="sticky top-0 z-40 bg-surface/80 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -47,7 +47,7 @@ export function Navbar({ variant = 'public' }: NavbarProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-lg hover:bg-gray-100 cursor-pointer">
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-lg hover:bg-border/50 cursor-pointer">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

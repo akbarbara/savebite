@@ -120,9 +120,9 @@ export default function RegisterMitraPage() {
           {[1, 2, 3].map(s => (
             <div key={s} className="flex items-center gap-2">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                s <= step ? 'bg-primary text-white' : 'bg-gray-200 text-text-muted'
+                s <= step ? 'bg-primary text-white' : 'bg-border text-text-muted'
               }`}>{s}</div>
-              {s < 3 && <div className={`w-12 h-0.5 ${s < step ? 'bg-primary' : 'bg-gray-200'}`} />}
+              {s < 3 && <div className={`w-12 h-0.5 ${s < step ? 'bg-primary' : 'bg-border'}`} />}
             </div>
           ))}
         </div>

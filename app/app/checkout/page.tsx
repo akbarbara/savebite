@@ -91,7 +91,7 @@ export default function CheckoutPage() {
                 paymentMethod === p.id ? 'border-primary bg-primary-light/30' : 'border-border hover:border-primary/30'
               }`}>
                 <input type="radio" name="payment" value={p.id} checked={paymentMethod === p.id} onChange={() => setPaymentMethod(p.id)} className="hidden" />
-                <div className={`p-2 rounded-lg ${paymentMethod === p.id ? 'bg-primary text-white' : 'bg-gray-100 text-text-secondary'}`}>{p.icon}</div>
+                <div className={`p-2 rounded-lg ${paymentMethod === p.id ? 'bg-primary text-white' : 'bg-border/50 text-text-secondary'}`}>{p.icon}</div>
                 <div><p className="font-semibold text-sm">{p.label}</p><p className="text-xs text-text-muted">{p.desc}</p></div>
                 <div className={`ml-auto w-5 h-5 rounded-full border-2 flex items-center justify-center ${paymentMethod === p.id ? 'border-primary' : 'border-border'}`}>
                   {paymentMethod === p.id && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}

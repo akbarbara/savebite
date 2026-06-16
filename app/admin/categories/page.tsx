@@ -58,7 +58,7 @@ export default function AdminCategoriesPage() {
       {isLoadingData ? <div className="text-center py-20">Memuat...</div> : (
         <div className="bg-surface rounded-2xl border border-border overflow-hidden">
         <table className="w-full">
-          <thead><tr className="border-b border-border bg-gray-50/50">
+          <thead><tr className="border-b border-border bg-background/50">
             <th className="text-left p-4 text-sm font-semibold text-text-secondary">Kategori</th>
             <th className="text-left p-4 text-sm font-semibold text-text-secondary">Slug</th>
             <th className="text-left p-4 text-sm font-semibold text-text-secondary">Urutan</th>

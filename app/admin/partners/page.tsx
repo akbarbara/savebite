@@ -66,7 +66,7 @@ export default function AdminPartnersPage() {
       <div className="bg-surface rounded-2xl border border-border overflow-hidden">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-border bg-gray-50/50">
+            <tr className="border-b border-border bg-background/50">
               <th className="text-left p-4 text-sm font-semibold text-text-secondary">Mitra</th>
               <th className="text-left p-4 text-sm font-semibold text-text-secondary hidden md:table-cell">Kategori</th>
               <th className="text-left p-4 text-sm font-semibold text-text-secondary hidden md:table-cell">Kota</th>
@@ -112,10 +112,10 @@ export default function AdminPartnersPage() {
             </div>
             <p className="text-sm text-text-secondary">{selectedPartner.description}</p>
             <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="p-3 bg-gray-50 rounded-xl"><p className="text-text-muted mb-1">Alamat</p><p className="font-medium">{selectedPartner.address}</p></div>
-              <div className="p-3 bg-gray-50 rounded-xl"><p className="text-text-muted mb-1">Telepon</p><p className="font-medium">{selectedPartner.phone}</p></div>
-              <div className="p-3 bg-gray-50 rounded-xl"><p className="text-text-muted mb-1">Rating</p><p className="font-medium flex items-center gap-1"><Star size={14} className="text-amber-400 fill-amber-400" /> {selectedPartner.avg_rating} ({selectedPartner.total_reviews} reviews)</p></div>
-              <div className="p-3 bg-gray-50 rounded-xl"><p className="text-text-muted mb-1">Bergabung</p><p className="font-medium">{new Date(selectedPartner.created_at).toLocaleDateString('id-ID')}</p></div>
+              <div className="p-3 bg-background rounded-xl"><p className="text-text-muted mb-1">Alamat</p><p className="font-medium">{selectedPartner.address}</p></div>
+              <div className="p-3 bg-background rounded-xl"><p className="text-text-muted mb-1">Telepon</p><p className="font-medium">{selectedPartner.phone}</p></div>
+              <div className="p-3 bg-background rounded-xl"><p className="text-text-muted mb-1">Rating</p><p className="font-medium flex items-center gap-1"><Star size={14} className="text-amber-400 fill-amber-400" /> {selectedPartner.avg_rating} ({selectedPartner.total_reviews} reviews)</p></div>
+              <div className="p-3 bg-background rounded-xl"><p className="text-text-muted mb-1">Bergabung</p><p className="font-medium">{new Date(selectedPartner.created_at).toLocaleDateString('id-ID')}</p></div>
             </div>
             {selectedPartner.status === 'pending' && (
               <div className="flex gap-3 pt-2">

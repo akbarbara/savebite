@@ -82,7 +82,7 @@ export default function MitraReviewsPage() {
               </div>
 
               {review.comment ? (
-                <p className="text-text-primary mb-4 bg-gray-50 p-4 rounded-xl">"{review.comment}"</p>
+                <p className="text-text-primary mb-4 bg-background p-4 rounded-xl">"{review.comment}"</p>
               ) : (
                 <p className="text-text-muted italic mb-4">Pelanggan tidak meninggalkan komentar teks.</p>
               )}

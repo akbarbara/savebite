@@ -131,7 +131,7 @@ export default function AnalyticsPage() {
         <div className="bg-surface rounded-2xl border border-border p-5">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-bold flex items-center gap-2"><TrendingUp size={18} className="text-primary" /> Tren Pendapatan</h3>
-            <div className="text-xs text-text-muted flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-md"><Calendar size={12}/> 7 Hari Terakhir</div>
+            <div className="text-xs text-text-muted flex items-center gap-1 bg-border/50 px-2 py-1 rounded-md"><Calendar size={12}/> 7 Hari Terakhir</div>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -155,7 +155,7 @@ export default function AnalyticsPage() {
         <div className="bg-surface rounded-2xl border border-border p-5">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-bold flex items-center gap-2"><Package size={18} className="text-accent" /> Volume Penjualan</h3>
-            <div className="text-xs text-text-muted flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-md"><Calendar size={12}/> 7 Hari Terakhir</div>
+            <div className="text-xs text-text-muted flex items-center gap-1 bg-border/50 px-2 py-1 rounded-md"><Calendar size={12}/> 7 Hari Terakhir</div>
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">

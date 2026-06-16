@@ -20,7 +20,7 @@ export function RescueBagCard({ bag }: RescueBagCardProps) {
     <Link href={`/app/bag/${bag.id}`}>
       <Card hover padding="none" className="overflow-hidden group">
         {/* Image */}
-        <div className="relative h-44 bg-gray-100 overflow-hidden">
+        <div className="relative h-44 bg-border/50 overflow-hidden">
           {bag.image_url && !imgError ? (
             <img 
               src={bag.image_url} 
@@ -36,7 +36,7 @@ export function RescueBagCard({ bag }: RescueBagCardProps) {
           
           {/* Discount Badge */}
           <div className="absolute top-3 left-3 z-10">
-            <Badge className="bg-white text-accent border-none shadow-md font-extrabold px-3 py-1">-{discount}%</Badge>
+            <Badge className="bg-surface text-accent border-none shadow-md font-extrabold px-3 py-1">-{discount}%</Badge>
           </div>
           {/* Stock Badge */}
           {isSoldOut ? (

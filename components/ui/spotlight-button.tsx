@@ -42,7 +42,7 @@ export function SpotlightButton({ children, className, onClick, ...props }: Spot
       onMouseLeave={() => setOpacity(0)}
       onClick={handleClick}
       className={cn(
-        "relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-white px-8 py-3.5 font-bold text-primary shadow-lg transition-all duration-300 outline-none hover:scale-105 active:scale-95 hover:shadow-xl",
+        "relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-surface px-8 py-3.5 font-bold text-primary shadow-lg transition-all duration-300 outline-none hover:scale-105 active:scale-95 hover:shadow-xl",
         className
       )}
       {...props}

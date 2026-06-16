@@ -67,7 +67,7 @@ export default function AdminWithdrawalsPage() {
         ) : (
           <table className="w-full min-w-[800px]">
             <thead>
-              <tr className="border-b border-border bg-gray-50/50">
+              <tr className="border-b border-border bg-background/50">
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Waktu Request</th>
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Mitra</th>
                 <th className="text-left p-4 text-sm font-semibold text-text-secondary whitespace-nowrap">Rekening Tujuan</th>
@@ -83,7 +83,7 @@ export default function AdminWithdrawalsPage() {
                 </tr>
               ) : (
                 withdrawals.map(w => (
-                  <tr key={w.id} className="border-b border-border last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <tr key={w.id} className="border-b border-border last:border-0 hover:bg-background/50 transition-colors">
                     <td className="p-4">
                       <div className="text-sm text-text-secondary">
                         {new Date(w.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}

@@ -72,13 +72,13 @@ export default function PartnerDetailPage() {
       {/* Partner Header */}
       <div className="bg-surface rounded-3xl border border-border overflow-hidden mb-8 shadow-sm">
         <div className="h-32 md:h-48 bg-gradient-to-r from-primary/30 to-accent/30 relative">
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-sm">
+          <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-sm">
             <Star size={16} className="fill-amber-500 text-amber-500" />
             {partner.avg_rating} <span className="text-text-muted font-normal text-xs">({partner.total_reviews})</span>
           </div>
         </div>
         <div className="px-6 pb-6 relative">
-          <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white border-4 border-surface shadow-md flex items-center justify-center -mt-10 md:-mt-12 mb-4 relative z-10">
+          <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-surface border-4 border-surface shadow-md flex items-center justify-center -mt-10 md:-mt-12 mb-4 relative z-10">
             <Store size={32} className="text-primary" />
           </div>
           

@@ -46,7 +46,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
         {title && (
           <div className="flex items-center justify-between p-5 border-b border-border">
             <h3 className="text-lg font-bold text-text-primary">{title}</h3>
-            <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+            <button onClick={onClose} className="p-1 rounded-lg hover:bg-border/50 transition-colors cursor-pointer">
               <X size={20} className="text-text-secondary" />
             </button>
           </div>
