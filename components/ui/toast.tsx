@@ -46,10 +46,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   };
 
   const styles = {
-    success: 'border-emerald-200 bg-emerald-50',
-    error: 'border-red-200 bg-red-50',
-    warning: 'border-amber-200 bg-amber-50',
-    info: 'border-blue-200 bg-blue-50',
+    success: 'border-emerald-200 bg-emerald-50 dark:bg-emerald-950/80 dark:border-emerald-900',
+    error: 'border-red-200 bg-red-50 dark:bg-red-950/80 dark:border-red-900',
+    warning: 'border-amber-200 bg-amber-50 dark:bg-amber-950/80 dark:border-amber-900',
+    info: 'border-blue-200 bg-blue-50 dark:bg-blue-950/80 dark:border-blue-900',
   };
 
   return (
