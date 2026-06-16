@@ -55,25 +55,25 @@ export default function ImpactDashboard() {
 
   // --- Gamification Level ---
   let levelName = "Pengamat Lingkungan 🧐";
-  let levelIcon = <Star size={32} className="text-gray-400" />;
+  let levelIcon = <Star size={32} className="text-gray-400 dark:text-gray-500" />;
   let nextGoal = 5;
-  let bgGradient = "from-gray-100 to-gray-200 text-text-primary";
+  let bgGradient = "from-gray-100 to-gray-200 dark:from-slate-800 dark:to-slate-900 text-text-primary border-gray-200 dark:border-slate-700";
 
   if (totalItemsSaved > 0 && totalItemsSaved < 5) {
     levelName = "Pecinta Lingkungan Pemula 🌱";
     levelIcon = <Leaf size={32} className="text-emerald-500" />;
     nextGoal = 5;
-    bgGradient = "from-emerald-50 to-emerald-100 text-emerald-800 border-emerald-200";
+    bgGradient = "from-emerald-50 to-emerald-100 dark:from-emerald-950/80 dark:to-emerald-900/80 text-emerald-800 dark:text-emerald-200 border-emerald-200 dark:border-emerald-800";
   } else if (totalItemsSaved >= 5 && totalItemsSaved < 20) {
     levelName = "Pejuang Makanan Tangguh 🛡️";
     levelIcon = <ShieldCheck size={32} className="text-blue-500" />;
     nextGoal = 20;
-    bgGradient = "from-blue-50 to-blue-100 text-blue-800 border-blue-200";
+    bgGradient = "from-blue-50 to-blue-100 dark:from-blue-950/80 dark:to-blue-900/80 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800";
   } else if (totalItemsSaved >= 20) {
     levelName = "Pahlawan Penyelamat Bumi 🦸‍♂️🌍";
     levelIcon = <Award size={32} className="text-yellow-500" />;
     nextGoal = totalItemsSaved + 10; // Endless goal
-    bgGradient = "from-yellow-100 to-yellow-200 text-yellow-800 border-yellow-300";
+    bgGradient = "from-yellow-100 to-yellow-200 dark:from-yellow-950/80 dark:to-yellow-900/80 text-yellow-800 dark:text-yellow-200 border-yellow-300 dark:border-yellow-800";
   }
 
   const progressPercent = Math.min(100, (totalItemsSaved / nextGoal) * 100);
