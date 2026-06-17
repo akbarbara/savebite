@@ -12,6 +12,7 @@ import { PageLoader } from '@/components/ui/page-loader';
 export default function AdminWithdrawalsPage() {
   const { addToast } = useToast();
   const [withdrawals, setWithdrawals] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [confirmModal, setConfirmModal] = useState<{ isOpen: boolean, id: string, status: 'approved' | 'rejected' }>({ isOpen: false, id: '', status: 'approved' });
@@ -51,6 +52,16 @@ export default function AdminWithdrawalsPage() {
     }
   };
 
+  const filteredWithdrawals = withdrawals.filter(w => {
+    const query = searchQuery.toLowerCase();
+    return (
+      (w.partner?.business_name && w.partner.business_name.toLowerCase().includes(query)) ||
+      (w.account_name && w.account_name.toLowerCase().includes(query)) ||
+      (w.account_number && w.account_number.includes(query)) ||
+      (w.bank_name && w.bank_name.toLowerCase().includes(query))
+    );
+  });
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -60,7 +71,15 @@ export default function AdminWithdrawalsPage() {
         </div>
       </div>
 
-      <div className="mb-6"><Input placeholder="Cari nama mitra atau rekening..." icon={<Search size={18} />} className="max-w-xs" /></div>
+      <div className="mb-6">
+        <Input 
+          placeholder="Cari nama mitra atau rekening..." 
+          icon={<Search size={18} />} 
+          className="max-w-xs" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
       <div className="bg-surface rounded-2xl border border-border overflow-x-auto shadow-sm">
         {isLoading ? (
@@ -78,12 +97,14 @@ export default function AdminWithdrawalsPage() {
               </tr>
             </thead>
             <tbody>
-              {withdrawals.length === 0 ? (
+              {filteredWithdrawals.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-text-muted">Belum ada permintaan penarikan dana.</td>
+                  <td colSpan={6} className="p-8 text-center text-text-muted">
+                    {searchQuery ? 'Tidak ada data penarikan yang cocok dengan pencarian.' : 'Belum ada request penarikan dana.'}
+                  </td>
                 </tr>
               ) : (
-                withdrawals.map(w => (
+                filteredWithdrawals.map(w => (
                   <tr key={w.id} className="border-b border-border last:border-0 hover:bg-background/50 transition-colors">
                     <td className="p-4">
                       <div className="text-sm text-text-secondary">

@@ -14,6 +14,7 @@ import { PageLoader } from '@/components/ui/page-loader';
 export default function AdminPartnersPage() {
   const { addToast } = useToast();
   const [filter, setFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [partners, setPartners] = useState<Partner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
@@ -27,7 +28,12 @@ export default function AdminPartnersPage() {
     fetchPartners();
   }, []);
 
-  const filtered = partners.filter(p => filter === 'all' || p.status === filter);
+  const filtered = partners.filter(p => {
+    const matchesFilter = filter === 'all' || p.status === filter;
+    const matchesSearch = p.business_name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          (p.phone && p.phone.includes(searchQuery));
+    return matchesFilter && matchesSearch;
+  });
 
   const statusConfig: Record<string, any> = {
     active: { variant: 'success', label: 'Aktif', icon: <CheckCircle size={14} /> },
@@ -54,7 +60,13 @@ export default function AdminPartnersPage() {
       <h1 className="text-2xl font-extrabold mb-6">Manajemen Mitra</h1>
 
       <div className="flex flex-wrap gap-3 mb-6">
-        <Input placeholder="Cari mitra..." icon={<Search size={18} />} className="max-w-xs" />
+        <Input 
+          placeholder="Cari mitra (nama/telepon)..." 
+          icon={<Search size={18} />} 
+          className="max-w-xs" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         {['all', 'active', 'pending', 'suspended'].map(tab => (
           <button key={tab} onClick={() => setFilter(tab)} className={`px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer ${
             filter === tab ? 'bg-primary text-white' : 'bg-surface border border-border text-text-secondary hover:border-primary'
