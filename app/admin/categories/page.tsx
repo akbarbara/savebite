@@ -15,6 +15,8 @@ export default function AdminCategoriesPage() {
   const [showModal, setShowModal] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
+  const [editCategory, setEditCategory] = useState<Category | null>(null);
+
   useEffect(() => {
     async function fetchCategories() {
       const { data } = await supabase.from('categories').select('*').order('sort_order', { ascending: true });
@@ -24,11 +26,21 @@ export default function AdminCategoriesPage() {
     fetchCategories();
   }, []);
 
-  const handleAddCategory = async (e: React.FormEvent<HTMLFormElement>) => {
+  const openAddModal = () => {
+    setEditCategory(null);
+    setShowModal(true);
+  };
+
+  const openEditModal = (cat: Category) => {
+    setEditCategory(cat);
+    setShowModal(true);
+  };
+
+  const handleSaveCategory = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSaving(true);
     const formData = new FormData(e.currentTarget);
-    const newCat = {
+    const catData = {
       name: formData.get('name') as string,
       slug: formData.get('slug') as string,
       sort_order: parseInt(formData.get('sort_order') as string) || categories.length + 1,
@@ -36,23 +48,63 @@ export default function AdminCategoriesPage() {
       is_active: true
     };
     
-    const { data, error } = await supabase.from('categories').insert([newCat]).select();
-    
-    if (error) {
-      addToast('error', 'Gagal: ' + error.message);
-    } else if (data) {
-      addToast('success', 'Kategori berhasil ditambahkan');
-      setCategories([...categories, data[0] as Category].sort((a, b) => a.sort_order - b.sort_order));
-      setShowModal(false);
+    if (editCategory) {
+      // Update existing
+      const { data, error } = await supabase.from('categories').update(catData).eq('id', editCategory.id).select();
+      if (error) {
+        addToast('error', 'Gagal update: ' + error.message);
+      } else if (data) {
+        addToast('success', 'Kategori berhasil diperbarui');
+        setCategories(categories.map(c => c.id === editCategory.id ? data[0] as Category : c).sort((a, b) => a.sort_order - b.sort_order));
+        setShowModal(false);
+      }
+    } else {
+      // Insert new
+      const { data, error } = await supabase.from('categories').insert([catData]).select();
+      if (error) {
+        addToast('error', 'Gagal: ' + error.message);
+      } else if (data) {
+        addToast('success', 'Kategori berhasil ditambahkan');
+        setCategories([...categories, data[0] as Category].sort((a, b) => a.sort_order - b.sort_order));
+        setShowModal(false);
+      }
     }
     setIsSaving(false);
+  };
+
+  const handleDeleteCategory = async (cat: Category) => {
+    // Check if category is used by partners
+    const { count, error: countError } = await supabase
+      .from('partners')
+      .select('*', { count: 'exact', head: true })
+      .eq('category_id', cat.id);
+
+    if (countError) {
+      addToast('error', 'Gagal mengecek penggunaan kategori');
+      return;
+    }
+
+    if (count && count > 0) {
+      addToast('error', `Kategori ini sedang digunakan oleh ${count} mitra. Tidak bisa dihapus!`);
+      return;
+    }
+
+    if (confirm(`Yakin ingin menghapus kategori "${cat.name}"?`)) {
+      const { error } = await supabase.from('categories').delete().eq('id', cat.id);
+      if (error) {
+        addToast('error', 'Gagal menghapus: ' + error.message);
+      } else {
+        addToast('success', 'Kategori berhasil dihapus');
+        setCategories(categories.filter(c => c.id !== cat.id));
+      }
+    }
   };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-extrabold">Manajemen Kategori</h1>
-        <Button onClick={() => setShowModal(true)}><Plus size={18} /> Tambah Kategori</Button>
+        <Button onClick={openAddModal}><Plus size={18} /> Tambah Kategori</Button>
       </div>
 
       {isLoadingData ? <div className="text-center py-20">Memuat...</div> : (
@@ -75,8 +127,8 @@ export default function AdminCategoriesPage() {
                 <td className="p-4 text-sm">{cat.sort_order}</td>
                 <td className="p-4 text-right">
                   <div className="flex gap-1 justify-end">
-                    <button className="p-2 rounded-lg hover:bg-primary-light text-text-muted hover:text-primary cursor-pointer"><Edit size={16} /></button>
-                    <button className="p-2 rounded-lg hover:bg-red-50 text-text-muted hover:text-error cursor-pointer"><Trash2 size={16} /></button>
+                    <button onClick={() => openEditModal(cat)} className="p-2 rounded-lg hover:bg-primary-light text-text-muted hover:text-primary cursor-pointer"><Edit size={16} /></button>
+                    <button onClick={() => handleDeleteCategory(cat)} className="p-2 rounded-lg hover:bg-red-50 text-text-muted hover:text-error cursor-pointer"><Trash2 size={16} /></button>
                   </div>
                 </td>
               </tr>
@@ -86,12 +138,12 @@ export default function AdminCategoriesPage() {
       </div>
       )}
 
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Tambah Kategori" size="sm">
-        <form className="space-y-4" onSubmit={handleAddCategory}>
-          <Input label="Nama Kategori" name="name" placeholder="Contoh: Dessert" required />
-          <Input label="Slug" name="slug" placeholder="dessert" required />
-          <Input label="Urutan" name="sort_order" type="number" placeholder="7" />
-          <Button type="submit" className="w-full" isLoading={isSaving}>Simpan</Button>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editCategory ? "Edit Kategori" : "Tambah Kategori"} size="sm">
+        <form className="space-y-4" onSubmit={handleSaveCategory}>
+          <Input label="Nama Kategori" name="name" defaultValue={editCategory?.name || ''} placeholder="Contoh: Dessert" required />
+          <Input label="Slug" name="slug" defaultValue={editCategory?.slug || ''} placeholder="dessert" required />
+          <Input label="Urutan" name="sort_order" type="number" defaultValue={editCategory?.sort_order?.toString() || ''} placeholder="7" />
+          <Button type="submit" className="w-full" isLoading={isSaving}>{editCategory ? 'Simpan Perubahan' : 'Simpan Kategori Baru'}</Button>
         </form>
       </Modal>
     </div>
