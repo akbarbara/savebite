@@ -72,7 +72,7 @@ export default function MitraProfilePage() {
     }
   };
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat profil...</div>;
+  if (isLoading) return <PageLoader message="Memuat profil..." />;
   if (!partner) return <div className="text-center py-20 text-error">Profil tidak ditemukan.</div>;
 
   return (

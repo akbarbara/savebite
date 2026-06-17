@@ -51,7 +51,7 @@ export default function MitraReviewsPage() {
     setIsSubmitting(false);
   };
 
-  if (isLoading) return <div className="text-center py-20">Memuat ulasan...</div>;
+  if (isLoading) return <PageLoader message="Memuat ulasan..." />;
 
   return (
     <div>

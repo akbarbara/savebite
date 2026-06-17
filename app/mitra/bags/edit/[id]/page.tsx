@@ -90,7 +90,7 @@ export default function EditBagPage() {
     }
   };
 
-  if (isLoadingData) return <div className="text-center py-20 text-text-muted">Memuat data...</div>;
+  if (isLoadingData) return <PageLoader message="Memuat data..." />;
   if (!bag) return <div className="text-center py-20 text-error">Data tidak ditemukan.</div>;
 
   return (

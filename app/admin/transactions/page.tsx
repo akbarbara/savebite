@@ -82,7 +82,7 @@ export default function AdminTransactionsPage() {
 
       <div className="bg-surface rounded-2xl border border-border overflow-x-auto shadow-sm">
         {isLoading ? (
-          <div className="p-10 text-center text-text-muted animate-pulse">Memuat transaksi...</div>
+          <PageLoader message="Memuat transaksi..." />
         ) : (
           <table className="w-full min-w-[700px]">
             <thead>

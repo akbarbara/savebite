@@ -48,7 +48,7 @@ export default function PartnerDetailPage() {
     fetchData();
   }, [params.id]);
   
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat informasi restoran...</div>;
+  if (isLoading) return <PageLoader message="Memuat informasi restoran..." />;
 
   if (!partner) {
     return (

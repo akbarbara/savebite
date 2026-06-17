@@ -60,7 +60,7 @@ export default function MitraDashboardPage() {
   const revenue = orders.filter(o => o.status === 'completed').reduce((s, o) => s + o.total_price, 0);
   const activeBags = bags;
 
-  if (isLoading) return <div className="text-center py-20">Memuat dashboard...</div>;
+  if (isLoading) return <PageLoader message="Memuat dashboard..." />;
   if (!partner) return <div className="text-center py-20 text-error">Toko mitra tidak ditemukan. Harap pastikan kamu sudah mendaftar sebagai mitra.</div>;
 
   return (

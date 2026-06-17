@@ -84,7 +84,7 @@ export default function OrderDetailPage() {
     setIsSubmittingReview(false);
   };
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat pesanan...</div>;
+  if (isLoading) return <PageLoader message="Memuat pesanan..." />;
   if (!order) return <div className="text-center py-20 font-bold">Pesanan tidak ditemukan</div>;
 
   const statusConfig = {

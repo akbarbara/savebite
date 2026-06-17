@@ -95,7 +95,7 @@ export default function AdminCategoriesPage() {
         <Button onClick={openAddModal}><Plus size={18} /> Tambah Kategori</Button>
       </div>
 
-      {isLoadingData ? <div className="text-center py-20">Memuat...</div> : (
+      {isLoadingData ? <PageLoader message="Memuat..." /> : (
         <div className="bg-surface rounded-2xl border border-border overflow-hidden">
         <table className="w-full">
           <thead><tr className="border-b border-border bg-background/50">

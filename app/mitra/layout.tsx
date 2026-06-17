@@ -70,7 +70,7 @@ export default function MitraLayout({ children }: { children: React.ReactNode })
   ];
 
   if (isLoading) {
-    return <div className="min-h-screen flex items-center justify-center bg-background text-text-muted">Memuat profil mitra...</div>;
+    return <PageLoader message="Memuat profil mitra..." />;
   }
 
   if (partner && partner.status === 'pending') {

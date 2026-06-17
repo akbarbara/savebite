@@ -47,7 +47,7 @@ export default function OrdersPage() {
       </div>
       <div className="space-y-3">
         {isLoading ? (
-          <div className="text-center py-10 text-text-muted">Memuat pesanan...</div>
+          <PageLoader message="Memuat pesanan..." />
         ) : (
           filtered.map(order => <OrderCard key={order.id} order={order} />)
         )}

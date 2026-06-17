@@ -46,7 +46,7 @@ export default function AdminPartnersPage() {
     }
   };
 
-  if (isLoading) return <div className="text-center py-20">Memuat data mitra...</div>;
+  if (isLoading) return <PageLoader message="Memuat data mitra..." />;
 
   return (
     <div>

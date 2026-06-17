@@ -63,7 +63,7 @@ export default function AdminWithdrawalsPage() {
 
       <div className="bg-surface rounded-2xl border border-border overflow-x-auto shadow-sm">
         {isLoading ? (
-          <div className="p-8 text-center text-text-muted animate-pulse">Memuat data...</div>
+          <PageLoader message="Memuat data..." />
         ) : (
           <table className="w-full min-w-[800px]">
             <thead>

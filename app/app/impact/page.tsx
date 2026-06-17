@@ -32,7 +32,7 @@ export default function ImpactDashboard() {
     fetchOrders();
   }, [user]);
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat Rapor Pahlawan Bumimu...</div>;
+  if (isLoading) return <PageLoader message="Memuat Rapor Pahlawan Bumimu..." />;
 
   // --- Metrics ---
   const totalItemsSaved = orders.reduce((sum, o) => sum + o.quantity, 0);

@@ -67,7 +67,7 @@ export default function MitraOrdersPage() {
     setIsVerifying(false);
   };
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat pesanan...</div>;
+  if (isLoading) return <PageLoader message="Memuat pesanan..." />;
   if (!partner) return <div className="text-center py-20 text-error">Toko mitra tidak ditemukan.</div>;
 
   return (

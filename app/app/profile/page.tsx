@@ -71,7 +71,7 @@ export default function ProfilePage() {
     fetchOrderStats();
   }, [user]);
 
-  if (isLoading) return <div className="text-center py-20">Memuat profil...</div>;
+  if (isLoading) return <PageLoader message="Memuat profil..." />;
   if (!user) return null; // Or redirect, but middleware usually handles this
 
   const menuItems = [

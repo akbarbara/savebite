@@ -38,7 +38,7 @@ export default function AnalyticsPage() {
     fetchData();
   }, [user]);
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat data analitik...</div>;
+  if (isLoading) return <PageLoader message="Memuat data analitik..." />;
   if (!partner) return <div className="text-center py-20 text-error">Toko mitra tidak ditemukan.</div>;
 
   // --- Metrics Calculations ---

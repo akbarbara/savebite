@@ -174,7 +174,7 @@ export default function CustomerHomePage() {
       </div>
       
       {isLoading ? (
-        <div className="text-center py-10 text-text-muted">Memuat data...</div>
+        <PageLoader message="Memuat data..." />
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

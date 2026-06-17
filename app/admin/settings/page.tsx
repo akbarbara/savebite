@@ -46,7 +46,7 @@ export default function AdminSettingsPage() {
     }
   };
 
-  if (isFetching) return <div className="p-8 text-center animate-pulse">Memuat pengaturan...</div>;
+  if (isFetching) return <PageLoader message="Memuat pengaturan..." />;
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">

@@ -31,7 +31,7 @@ export default function MitraOrderDetailPage() {
     fetchOrder();
   }, [params.id, user]);
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat detail pesanan...</div>;
+  if (isLoading) return <PageLoader message="Memuat detail pesanan..." />;
   if (!order) return <div className="text-center py-20 font-bold">Pesanan tidak ditemukan</div>;
 
   const statusConfig = {

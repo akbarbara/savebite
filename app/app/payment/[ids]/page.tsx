@@ -67,7 +67,7 @@ export default function PaymentGatewayPage() {
     }
   };
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat gerbang pembayaran...</div>;
+  if (isLoading) return <PageLoader message="Memuat gerbang pembayaran..." />;
 
   const totalAmount = orders.reduce((sum, o) => sum + o.total_price, 0);
   const method = orders[0]?.payment_method || 'bank';

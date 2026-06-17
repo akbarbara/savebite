@@ -63,7 +63,7 @@ export default function MitraBagsPage() {
     setBagToDelete(null);
   };
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat...</div>;
+  if (isLoading) return <PageLoader message="Memuat..." />;
   if (!partner) return <div className="text-center py-20 text-error">Mitra tidak ditemukan.</div>;
 
   return (

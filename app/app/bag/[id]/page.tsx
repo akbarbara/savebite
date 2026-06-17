@@ -47,7 +47,7 @@ export default function BagDetailPage() {
   };
 
   if (isLoading) {
-    return <div className="text-center py-20 text-text-muted">Memuat detail produk...</div>;
+    return <PageLoader message="Memuat detail produk..." />;
   }
 
   if (!bag) {

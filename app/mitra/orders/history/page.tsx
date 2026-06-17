@@ -40,7 +40,7 @@ export default function MitraOrderHistoryPage() {
     fetchHistory();
   }, [user]);
 
-  if (isLoading) return <div className="text-center py-20 text-text-muted">Memuat riwayat transaksi...</div>;
+  if (isLoading) return <PageLoader message="Memuat riwayat transaksi..." />;
   if (!partner) return <div className="text-center py-20 text-error">Toko mitra tidak ditemukan.</div>;
 
   // ---------------------------------------------------------------------------
