@@ -16,6 +16,8 @@ export default function AdminCategoriesPage() {
   const [isSaving, setIsSaving] = useState(false);
 
   const [editCategory, setEditCategory] = useState<Category | null>(null);
+  const [deleteCategory, setDeleteCategory] = useState<Category | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -72,7 +74,7 @@ export default function AdminCategoriesPage() {
     setIsSaving(false);
   };
 
-  const handleDeleteCategory = async (cat: Category) => {
+  const handleDeleteClick = async (cat: Category) => {
     // Check if category is used by partners
     const { count, error: countError } = await supabase
       .from('partners')
@@ -89,15 +91,22 @@ export default function AdminCategoriesPage() {
       return;
     }
 
-    if (confirm(`Yakin ingin menghapus kategori "${cat.name}"?`)) {
-      const { error } = await supabase.from('categories').delete().eq('id', cat.id);
-      if (error) {
-        addToast('error', 'Gagal menghapus: ' + error.message);
-      } else {
-        addToast('success', 'Kategori berhasil dihapus');
-        setCategories(categories.filter(c => c.id !== cat.id));
-      }
+    // Show custom modal instead of native confirm
+    setDeleteCategory(cat);
+  };
+
+  const confirmDeleteCategory = async () => {
+    if (!deleteCategory) return;
+    setIsDeleting(true);
+    const { error } = await supabase.from('categories').delete().eq('id', deleteCategory.id);
+    if (error) {
+      addToast('error', 'Gagal menghapus: ' + error.message);
+    } else {
+      addToast('success', 'Kategori berhasil dihapus');
+      setCategories(categories.filter(c => c.id !== deleteCategory.id));
+      setDeleteCategory(null);
     }
+    setIsDeleting(false);
   };
 
   return (
@@ -128,7 +137,7 @@ export default function AdminCategoriesPage() {
                 <td className="p-4 text-right">
                   <div className="flex gap-1 justify-end">
                     <button onClick={() => openEditModal(cat)} className="p-2 rounded-lg hover:bg-primary-light text-text-muted hover:text-primary cursor-pointer"><Edit size={16} /></button>
-                    <button onClick={() => handleDeleteCategory(cat)} className="p-2 rounded-lg hover:bg-red-50 text-text-muted hover:text-error cursor-pointer"><Trash2 size={16} /></button>
+                    <button onClick={() => handleDeleteClick(cat)} className="p-2 rounded-lg hover:bg-red-50 text-text-muted hover:text-error cursor-pointer"><Trash2 size={16} /></button>
                   </div>
                 </td>
               </tr>
@@ -145,6 +154,19 @@ export default function AdminCategoriesPage() {
           <Input label="Urutan" name="sort_order" type="number" defaultValue={editCategory?.sort_order?.toString() || ''} placeholder="7" />
           <Button type="submit" className="w-full" isLoading={isSaving}>{editCategory ? 'Simpan Perubahan' : 'Simpan Kategori Baru'}</Button>
         </form>
+      </Modal>
+
+      <Modal isOpen={!!deleteCategory} onClose={() => setDeleteCategory(null)} title="Hapus Kategori" size="sm">
+        <div className="space-y-4">
+          <p className="text-sm text-text-secondary">
+            Apakah Anda yakin ingin menghapus kategori <span className="font-bold text-text-primary">"{deleteCategory?.name}"</span>? 
+            Tindakan ini tidak dapat dibatalkan.
+          </p>
+          <div className="flex gap-3 pt-2">
+            <Button variant="outline" className="flex-1" onClick={() => setDeleteCategory(null)}>Batal</Button>
+            <Button variant="danger" className="flex-1" isLoading={isDeleting} onClick={confirmDeleteCategory}>Ya, Hapus</Button>
+          </div>
+        </div>
       </Modal>
     </div>
   );
