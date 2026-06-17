@@ -7,6 +7,7 @@ import { Modal } from '@/components/ui/modal';
 import { supabase } from '@/lib/supabase/client';
 import { useToast } from '@/components/ui/toast';
 import { Category } from '@/types';
+import { saveCategoryAdmin, deleteCategoryAdmin } from '@/app/actions/admin';
 
 export default function AdminCategoriesPage() {
   const { addToast } = useToast();
@@ -50,57 +51,35 @@ export default function AdminCategoriesPage() {
       is_active: true
     };
     
-    if (editCategory) {
-      // Update existing
-      const { data, error } = await supabase.from('categories').update(catData).eq('id', editCategory.id).select();
-      if (error) {
-        addToast('error', 'Gagal update: ' + error.message);
-      } else if (data) {
-        addToast('success', 'Kategori berhasil diperbarui');
-        setCategories(categories.map(c => c.id === editCategory.id ? data[0] as Category : c).sort((a, b) => a.sort_order - b.sort_order));
-        setShowModal(false);
+    const result = await saveCategoryAdmin(catData, editCategory?.id);
+    
+    if (!result.success) {
+      addToast('error', 'Gagal menyimpan: ' + result.error);
+    } else if (result.data) {
+      addToast('success', editCategory ? 'Kategori berhasil diperbarui' : 'Kategori berhasil ditambahkan');
+      if (editCategory) {
+        setCategories(categories.map(c => c.id === editCategory.id ? result.data[0] as Category : c).sort((a, b) => a.sort_order - b.sort_order));
+      } else {
+        setCategories([...categories, result.data[0] as Category].sort((a, b) => a.sort_order - b.sort_order));
       }
-    } else {
-      // Insert new
-      const { data, error } = await supabase.from('categories').insert([catData]).select();
-      if (error) {
-        addToast('error', 'Gagal: ' + error.message);
-      } else if (data) {
-        addToast('success', 'Kategori berhasil ditambahkan');
-        setCategories([...categories, data[0] as Category].sort((a, b) => a.sort_order - b.sort_order));
-        setShowModal(false);
-      }
+      setShowModal(false);
     }
+    
     setIsSaving(false);
   };
 
   const handleDeleteClick = async (cat: Category) => {
-    // Check if category is used by partners
-    const { count, error: countError } = await supabase
-      .from('partners')
-      .select('*', { count: 'exact', head: true })
-      .eq('category_id', cat.id);
-
-    if (countError) {
-      addToast('error', 'Gagal mengecek penggunaan kategori');
-      return;
-    }
-
-    if (count && count > 0) {
-      addToast('error', `Kategori ini sedang digunakan oleh ${count} mitra. Tidak bisa dihapus!`);
-      return;
-    }
-
-    // Show custom modal instead of native confirm
     setDeleteCategory(cat);
   };
 
   const confirmDeleteCategory = async () => {
     if (!deleteCategory) return;
     setIsDeleting(true);
-    const { error } = await supabase.from('categories').delete().eq('id', deleteCategory.id);
-    if (error) {
-      addToast('error', 'Gagal menghapus: ' + error.message);
+    
+    const result = await deleteCategoryAdmin(deleteCategory.id);
+    
+    if (!result.success) {
+      addToast('error', result.error || 'Gagal menghapus kategori');
     } else {
       addToast('success', 'Kategori berhasil dihapus');
       setCategories(categories.filter(c => c.id !== deleteCategory.id));

@@ -48,3 +48,62 @@ export async function getAllTransactionsAdmin() {
     return { success: false, error: err.message };
   }
 }
+
+export async function saveCategoryAdmin(categoryData: any, categoryId?: string) {
+  try {
+    let result;
+    if (categoryId) {
+      result = await supabaseAdmin
+        .from('categories')
+        .update(categoryData)
+        .eq('id', categoryId)
+        .select();
+    } else {
+      result = await supabaseAdmin
+        .from('categories')
+        .insert([categoryData])
+        .select();
+    }
+
+    if (result.error) {
+      return { success: false, error: result.error.message };
+    }
+
+    revalidatePath('/admin/categories');
+    return { success: true, data: result.data };
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+}
+
+export async function deleteCategoryAdmin(categoryId: string) {
+  try {
+    // Check if category is used by partners
+    const { count, error: countError } = await supabaseAdmin
+      .from('partners')
+      .select('*', { count: 'exact', head: true })
+      .eq('category_id', categoryId);
+
+    if (countError) {
+      return { success: false, error: 'Gagal mengecek penggunaan kategori' };
+    }
+
+    if (count && count > 0) {
+      return { success: false, error: `Kategori ini sedang digunakan oleh ${count} mitra. Tidak bisa dihapus!` };
+    }
+
+    const { error } = await supabaseAdmin
+      .from('categories')
+      .delete()
+      .eq('id', categoryId);
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    revalidatePath('/admin/categories');
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message };
+  }
+}
