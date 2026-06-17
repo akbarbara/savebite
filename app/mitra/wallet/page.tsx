@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { getWalletData, requestWithdrawal } from '@/app/actions/wallet';
 import { Withdrawal } from '@/types';
 import { useAuth } from '@/lib/auth-context';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function MitraWalletPage() {
   const { user } = useAuth();
@@ -80,7 +81,7 @@ export default function MitraWalletPage() {
   };
 
   if (isLoading) {
-    return <div className="p-8 text-center animate-pulse">Memuat data dompet...</div>;
+    return <PageLoader message="Menyiapkan brankas dompet..." />;
   }
 
   const isEligible = balance >= minWithdrawal;
