@@ -126,6 +126,9 @@ export default function AdminPartnersPage() {
             {selectedPartner.status === 'active' && (
               <Button variant="danger" className="w-full" onClick={() => updateStatus(selectedPartner.id, 'suspended')}>⚠️ Suspend Mitra</Button>
             )}
+            {selectedPartner.status === 'suspended' && (
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white" onClick={() => updateStatus(selectedPartner.id, 'active')}>✅ Aktifkan Kembali (Unsuspend)</Button>
+            )}
           </div>
         )}
       </Modal>
