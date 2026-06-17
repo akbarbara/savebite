@@ -23,11 +23,12 @@ export default function CustomerHomePage() {
     if (authLoading) return; // Wait for auth
 
     async function fetchData() {
-      // Fetch active bags
+      // Fetch active bags only from active partners
       const { data: bagsData } = await supabase
         .from('rescue_bags')
-        .select('*, partner:partners(*, category:categories(*))')
-        .eq('status', 'active');
+        .select('*, partner:partners!inner(*, category:categories(*))')
+        .eq('status', 'active')
+        .eq('partner.status', 'active');
         
       if (bagsData) setBags(bagsData as any[]);
 
