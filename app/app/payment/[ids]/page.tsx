@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase/client';
 import { useToast } from '@/components/ui/toast';
 import { formatCurrency } from '@/lib/utils';
 import { Order } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function PaymentGatewayPage() {
   const params = useParams();

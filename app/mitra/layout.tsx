@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase/client';
 import { Partner } from '@/types';
 import Link from 'next/link';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function MitraLayout({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();

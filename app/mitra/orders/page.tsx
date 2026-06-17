@@ -9,6 +9,7 @@ import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
 import { Order, Partner } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function MitraOrdersPage() {
   const { user } = useAuth();

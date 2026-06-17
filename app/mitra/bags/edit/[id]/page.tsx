@@ -12,6 +12,7 @@ import { useToast } from '@/components/ui/toast';
 import { RescueBag } from '@/types';
 
 import { ImageUploader } from '@/components/ui/image-uploader';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function EditBagPage() {
   const params = useParams();

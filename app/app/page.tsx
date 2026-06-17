@@ -9,6 +9,7 @@ import { mockCategories } from '@/lib/mock-data';
 import { RescueBag, Partner } from '@/types';
 
 import { useAuth } from '@/lib/auth-context';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function CustomerHomePage() {
   const { user, isLoading: authLoading } = useAuth();

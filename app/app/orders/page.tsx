@@ -5,6 +5,7 @@ import { OrderCard } from '@/components/features/order-card';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase/client';
 import { Order } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function OrdersPage() {
   const { user } = useAuth();

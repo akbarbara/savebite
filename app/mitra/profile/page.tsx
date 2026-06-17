@@ -11,6 +11,7 @@ import { supabase } from '@/lib/supabase/client';
 import { useToast } from '@/components/ui/toast';
 import { ImageUploader } from '@/components/ui/image-uploader';
 import { Partner } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function MitraProfilePage() {
   const { user } = useAuth();

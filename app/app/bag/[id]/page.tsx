@@ -13,6 +13,7 @@ import { supabase } from '@/lib/supabase/client';
 import { mockReviews } from '@/lib/mock-data';
 import { formatCurrency } from '@/lib/utils';
 import { RescueBag } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function BagDetailPage() {
   const params = useParams();

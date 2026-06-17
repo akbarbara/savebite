@@ -13,6 +13,7 @@ import { formatCurrency } from '@/lib/utils';
 import { supabase } from '@/lib/supabase/client';
 import { Order } from '@/types';
 import { submitReview } from '@/app/actions/reviews';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function OrderDetailPage() {
   const params = useParams();

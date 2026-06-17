@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { RescueBagCard } from '@/components/features/rescue-bag-card';
 import { supabase } from '@/lib/supabase/client';
 import { Partner, RescueBag, Review } from '@/types';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function PartnerDetailPage() {
   const params = useParams();

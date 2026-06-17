@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { Modal } from '@/components/ui/modal';
 import { useToast } from '@/components/ui/toast';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function ProfilePage() {
   const router = useRouter();

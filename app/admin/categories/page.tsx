@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase/client';
 import { useToast } from '@/components/ui/toast';
 import { Category } from '@/types';
 import { saveCategoryAdmin, deleteCategoryAdmin } from '@/app/actions/admin';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function AdminCategoriesPage() {
   const { addToast } = useToast();

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/toast';
 import { getPlatformSettings, updatePlatformSettings } from '@/app/actions/settings';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function AdminSettingsPage() {
   const { addToast } = useToast();

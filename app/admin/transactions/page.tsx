@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select } from '@/components/ui/select';
 import { formatCurrency } from '@/lib/utils';
 import { getAllTransactionsAdmin } from '@/app/actions/admin';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function AdminTransactionsPage() {
   const [orders, setOrders] = useState<any[]>([]);

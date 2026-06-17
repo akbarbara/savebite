@@ -9,6 +9,7 @@ import { supabase } from '@/lib/supabase/client';
 import { Partner } from '@/types';
 import { useToast } from '@/components/ui/toast';
 import { updatePartnerStatusAdmin } from '@/app/actions/admin';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function AdminPartnersPage() {
   const { addToast } = useToast();

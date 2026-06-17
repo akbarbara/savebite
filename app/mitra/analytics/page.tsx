@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
 import { Order, Partner } from '@/types';
 import { 
+import { PageLoader } from '@/components/ui/page-loader';
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar
 } from 'recharts';

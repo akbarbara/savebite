@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
 import { Order } from '@/types';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, Label } from 'recharts';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function ImpactDashboard() {
   const { user } = useAuth();

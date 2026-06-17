@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/toast';
 import { getAdminWithdrawals, updateWithdrawalStatus } from '@/app/actions/wallet';
 import { Modal } from '@/components/ui/modal';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function AdminWithdrawalsPage() {
   const { addToast } = useToast();

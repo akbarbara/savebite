@@ -7,6 +7,7 @@ import { Review } from '@/types';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { replyToReviewAdmin } from '@/app/actions/reviews';
+import { PageLoader } from '@/components/ui/page-loader';
 
 export default function MitraReviewsPage() {
   const { user } = useAuth();
